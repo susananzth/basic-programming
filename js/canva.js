@@ -1,6 +1,7 @@
 function dibujarLinia(lienzo, color, xinicial, yinicial, xfinal, yfinal){
     lienzo.beginPath();
     lienzo.strokeStyle = color;
+    lienzo.lineWicth = 2;
     lienzo.moveTo(xinicial, yinicial);
     lienzo.lineTo(xfinal, yfinal);
     lienzo.stroke();
