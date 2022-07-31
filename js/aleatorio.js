@@ -1,18 +1,48 @@
 var villa = document.getElementById("villa");
 var papel = villa.getContext('2d');
-var mapa = "img/tile.png";
+// Declara objetos
+var fonto = {
+    url: "img/tile.png",
+    carga: false
+};
+var vaca = {
+    url: "img/vaca.png",
+    carga: false
+};
 
 // Crear objeto de la imagen para insertarlo en el canvas
-var fondo = new Image();
 // Indica la ruta de la imágen
-fondo.src = mapa;
-fondo.addEventListener("load", dibujar);
+fondo.imagen = new Image();
+fondo.imagen.src = fondo.url;
+fondo.imagen.addEventListener("load", cargar(fondo));
 
-var vaca = new Image();
-vaca.src = "img/vaca.png";
-vaca.addEventListener("load", dibujarVaca);
+vaca.imagen = new Image();
+vaca.imagen.src = vaca.url;
+vaca.imagen.addEventListener("load", cargar(vaca));
 
-var pollo = new Image();
+
+/**
+* @description Carga la imagen
+* @param {object} objeto atributos de la imágen
+* @returns {void}
+*/
+function cargar(objeto) {
+    objeto.carga = true;
+    dibujar(papel, fondo);
+}
+
+/**
+* @description Dibuja una imágen en el canvas
+* @param {object} lienzo Canvas renderizado a 2D
+* @param {object} fondo atributos de la imágen
+* @returns {void}
+*/
+function dibujar(lienzo, fondo) {
+    lienzo.drawImage(fondo, 0, 0);
+}
+
+
+pollo.imagen = new Image();
 pollo.src = "img/pollo.png";
 pollo.addEventListener("load", dibujarPollo);
 
@@ -20,9 +50,6 @@ var cerdo = new Image();
 cerdo.src = "img/cerdo.png";
 cerdo.addEventListener("load", dibujarCerdo);
 
-function dibujar() {
-    papel.drawImage(fondo, 0, 0);
-}
 
 function dibujarVaca() {
     papel.drawImage(vaca, 10, 300);
@@ -43,7 +70,7 @@ function dibujarCerdo() {
 */
 function aleatorio(min, max) {
     var resultado;
-    resultado = Math.floor(Math.random() * (max - min +1)) + min;
+    resultado = Math.floor(Math.random() * (max - min + 1)) + min;
     return resultado;
 }
-document.write(aleatorio(10,20));
+document.write(aleatorio(10, 20));
